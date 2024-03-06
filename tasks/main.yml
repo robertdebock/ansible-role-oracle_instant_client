@@ -36,12 +36,13 @@
     - name: Install required packages
       ansible.builtin.package:
         name: "{{ oracle_instant_client_required_packages }}"
-        
+
     - name: Create /usr/lib/oracle
       ansible.builtin.file:
         path: /usr/lib/oracle/21/client64/bin/
         state: directory
-  
+        mode: "0755"
+
     - name: Install devel archive
       ansible.builtin.unarchive:
         src: "{{ oracle_instant_client_devel_archive }}"
@@ -57,7 +58,7 @@
         remote_src: yes
       when:
         - oracle_instant_client_type in ["basic", "all"]
-    
+
     - name: Copy files to the correct location
       ansible.builtin.copy:
         src: /usr/lib/oracle/instantclient_21_13/{{ item }}
@@ -74,6 +75,7 @@
       ansible.builtin.copy:
         dest: /etc/ld.so.conf.d/oracle-instantclient.conf
         content: /usr/lib/oracle/instantclient_21_13
+        mode: "0644"
       when:
         - oracle_instant_client_type in ["basic", "all"]
       notify:
