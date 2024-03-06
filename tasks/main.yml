@@ -1,0 +1,80 @@
+---
+# tasks file for oracle_instant_client
+
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Trust Oracle GPG key
+  ansible.builtin.rpm_key:
+    key: "https://yum.oracle.com/RPM-GPG-KEY-oracle-ol{{ ansible_distribution_major_version }}"
+  when:
+    - oracle_instant_client_installation_type == "package"
+
+- name: Install package
+  when:
+    - oracle_instant_client_installation_type == "package"
+  block:
+    - name: Install basic package
+      ansible.builtin.package:
+        name: "{{ oracle_instant_client_package }}"
+      when:
+        - oracle_instant_client_type in ["basic", "all"]
+
+    - name: Install devel package
+      ansible.builtin.package:
+        name: "{{ oracle_instant_client_devel_package }}"
+      when:
+        - oracle_instant_client_type in ["devel", "all"]
+
+- name: Instal zip
+  when:
+    - oracle_instant_client_installation_type == "zip"
+  block:
+    - name: Install required packages
+      ansible.builtin.package:
+        name: "{{ oracle_instant_client_required_packages }}"
+        
+    - name: Create /usr/lib/oracle
+      ansible.builtin.file:
+        path: /usr/lib/oracle/21/client64/bin/
+        state: directory
+  
+    - name: Install devel archive
+      ansible.builtin.unarchive:
+        src: "{{ oracle_instant_client_devel_archive }}"
+        dest: /usr/lib/oracle/
+        remote_src: yes
+      when:
+        - oracle_instant_client_type in ["devel", "all"]
+
+    - name: Install basic archive
+      ansible.builtin.unarchive:
+        src: "{{ oracle_instant_client_archive }}"
+        dest: /usr/lib/oracle/
+        remote_src: yes
+      when:
+        - oracle_instant_client_type in ["basic", "all"]
+    
+    - name: Copy files to the correct location
+      ansible.builtin.copy:
+        src: /usr/lib/oracle/instantclient_21_13/{{ item }}
+        dest: /usr/lib/oracle/21/client64/bin/
+        mode: '0755'
+        remote_src: yes
+      loop:
+        - adrci
+        - genezi
+      when:
+        - oracle_instant_client_type in ["basic", "all"]
+
+    - name: Create /etc/ld.so.conf.d/oracle-instantclient.conf
+      ansible.builtin.copy:
+        dest: /etc/ld.so.conf.d/oracle-instantclient.conf
+        content: /usr/lib/oracle/instantclient_21_13
+      when:
+        - oracle_instant_client_type in ["basic", "all"]
+      notify:
+        - Run ldconfig

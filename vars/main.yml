@@ -1,0 +1,24 @@
+---
+# vars file for oracle_instant_client
+
+_oracle_instant_client_package:
+  "7": "https://download.oracle.com/otn_software/linux/instantclient/2113000/oracle-instantclient-basic-21.13.0.0.0-1.x86_64.rpm"
+  "8": "https://download.oracle.com/otn_software/linux/instantclient/2113000/oracle-instantclient-basic-21.13.0.0.0-1.el8.x86_64.rpm"
+oracle_instant_client_package: "{{ _oracle_instant_client_package[ansible_distribution_major_version] }}"
+
+oracle_instant_client_archive: "https://download.oracle.com/otn_software/linux/instantclient/2113000/instantclient-basic-linux.x64-21.13.0.0.0dbru.zip"
+
+_oracle_instant_client_devel_package:
+  "7": "https://download.oracle.com/otn_software/linux/instantclient/2113000/oracle-instantclient-devel-21.13.0.0.0-1.x86_64.rpm"
+  "8": "https://download.oracle.com/otn_software/linux/instantclient/2113000/oracle-instantclient-devel-21.13.0.0.0-1.el8.x86_64.rpm"
+oracle_instant_client_devel_package: "{{ _oracle_instant_client_devel_package[ansible_distribution_major_version] }}"
+
+oracle_instant_client_devel_archive: "https://download.oracle.com/otn_software/linux/instantclient/2113000/instantclient-sdk-linux.x64-21.13.0.0.0dbru.zip"
+
+_oracle_instant_client_required_packages:
+  Debian:
+    - libaio1
+    - libaio-dev
+  RedHat:
+    - libaio
+oracle_instant_client_required_packages: "{{ _oracle_instant_client_required_packages[ansible_os_family] }}"

@@ -1,0 +1,19 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: Run adrci
+      ansible.builtin.shell:
+        cmd: "set -o pipefail && echo 'HELP' | /usr/lib/oracle/21/client64/bin/adrci -v"
+        executable: /bin/bash
+      changed_when: no
+      environment:
+        ORACLE_HOME: /tmp
+
+    - name: Run genezi
+      ansible.builtin.command:
+        cmd: /usr/lib/oracle/21/client64/bin/genezi -v
+      changed_when: no

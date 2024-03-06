@@ -1,0 +1,51 @@
+---
+#
+# Ansible managed
+#
+
+name: Ansible Molecule
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  schedule:
+    - cron: '29 15 15 * *'
+
+jobs:
+  lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: ansible-lint
+        uses: ansible-community/ansible-lint-action@main
+  test:
+    needs:
+      - lint
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - image: "enterpriselinux"
+            tag: "7"
+          - image: "enterpriselinux"
+            tag: "8"
+          - image: "enterpriselinux"
+            tag: "latest"
+          - image: "debian"
+            tag: "latest"
+          - image: "debian"
+            tag: "bullseye"
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          path: "${{ github.repository }}"
+      - name: molecule
+        uses: robertdebock/molecule-action@6.0.1
+        with:
+          image: ${{ matrix.config.image }}
+          tag: ${{ matrix.config.tag }}

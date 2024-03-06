@@ -1,0 +1,8 @@
+---
+# defaults file for oracle_instant_client
+
+# What type of package to install, either "basic", "devel", or "all".
+oracle_instant_client_type: "basic"
+
+# Set the installation package type, either: "package" or "zip".
+oracle_instant_client_installation_type: "package"
