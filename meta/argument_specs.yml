@@ -15,6 +15,10 @@ argument_specs:
           - "basic"
           - "devel"
           - "all"
+      oracle_instant_client_version:
+        type: "str"
+        default: "21.13.0.0.0"
+        description: "The version of the client to install. Versions can be found here: https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html"
       oracle_instant_client_installation_type:
         type: "str"
         default: "package"
