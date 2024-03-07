@@ -6,5 +6,3 @@
 
   roles:
     - role: ansible-role-oracle_instant_client
-      oracle_instant_client_type: all
-      oracle_instant_client_installation_type: zip
