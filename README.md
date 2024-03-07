@@ -19,8 +19,6 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.oracle_instant_client
-      oracle_instant_client_type: all
-      oracle_instant_client_installation_type: zip
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-oracle_instant_client/blob/master/molecule/default/prepare.yml):
@@ -48,7 +46,10 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for oracle_instant_client
 
 # What type of package to install, either "basic", "devel", or "all".
-oracle_instant_client_type: "basic"
+oracle_instant_client_type: "all"
+
+# The version of the client to install. Versions can be found here: https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html
+oracle_instant_client_version: "21.13.0.0.0"
 
 # Set the installation package type, either: "package" or "zip".
 oracle_instant_client_installation_type: "package"
