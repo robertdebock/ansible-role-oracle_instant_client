@@ -7,16 +7,16 @@
   run_once: yes
   delegate_to: localhost
 
-- name: Trust Oracle GPG key
-  ansible.builtin.rpm_key:
-    key: "https://yum.oracle.com/RPM-GPG-KEY-oracle-ol{{ ansible_distribution_major_version }}"
-  when:
-    - oracle_instant_client_installation_type == "package"
-
 - name: Install package
   when:
     - oracle_instant_client_installation_type == "package"
   block:
+    - name: Trust Oracle GPG key
+      ansible.builtin.rpm_key:
+        key: "https://yum.oracle.com/RPM-GPG-KEY-oracle-ol{{ ansible_distribution_major_version }}"
+      when:
+        - ansible_os_family == "RedHat"
+
     - name: Install basic package
       ansible.builtin.package:
         name: "{{ oracle_instant_client_package }}"
