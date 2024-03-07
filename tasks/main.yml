@@ -69,7 +69,7 @@
       loop: "{{ oracle_instant_client_zip_binaries }}"
       when:
         - oracle_instant_client_type in ["basic", "all"]
-    
+
     - name: Copy libraries
       ansible.builtin.copy:
         src: /usr/lib/oracle/instantclient_21_13/{{ item }}
@@ -82,7 +82,7 @@
 
     - name: Link libraries
       ansible.builtin.file:
-        src: "{{ item.src}}"
+        src: "{{ item.src }}"
         dest: "{{ item.dest }}"
         state: link
       loop: "{{ oracle_instant_client_zip_links }}"
