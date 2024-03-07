@@ -22,3 +22,60 @@ _oracle_instant_client_required_packages:
   RedHat:
     - libaio
 oracle_instant_client_required_packages: "{{ _oracle_instant_client_required_packages[ansible_os_family] }}"
+
+oracle_instant_client_zip_directories:
+  - /usr/lib/oracle
+  - /usr/lib/oracle/21
+  - /usr/lib/oracle/21/client64
+  - /usr/lib/oracle/21/client64/bin
+  - /usr/lib/oracle/21/client64/lib
+
+oracle_instant_client_zip_binaries:
+  - adrci
+  - genezi
+
+oracle_instant_client_zip_libraries:
+  - libclntsh.so.21.1
+  - libclntshcore.so.21.1
+  - libnnz21.so
+  - libocci.so.21.1
+  - libocci_gcc53.so.21.1
+  - libociei.so
+  - libocijdbc21.so
+  - liboramysql.so
+  - ojdbc8.jar
+  - xstreams.jar
+
+oracle_instant_client_zip_links:
+  - src: /usr/lib/oracle/21/client64/lib/libclntsh.so.21.1
+    dest: /usr/lib/oracle/21/client64/lib/libclntsh.so
+  - src: /usr/lib/oracle/21/client64/lib/libclntsh.so.21.1
+    dest: /usr/lib/oracle/21/client64/lib/libclntsh.so.10.1
+  - src: /usr/lib/oracle/21/client64/lib/libclntsh.so.21.1
+    dest: /usr/lib/oracle/21/client64/lib/libclntsh.so.11.1
+  - src: /usr/lib/oracle/21/client64/lib/libclntsh.so.21.1
+    dest: /usr/lib/oracle/21/client64/lib/libclntsh.so.12.1
+  - src: /usr/lib/oracle/21/client64/lib/libclntsh.so.21.1
+    dest: /usr/lib/oracle/21/client64/lib/libclntsh.so.18.1
+  - src: /usr/lib/oracle/21/client64/lib/libclntsh.so.21.1
+    dest: /usr/lib/oracle/21/client64/lib/libclntsh.so.19.1
+  - src: /usr/lib/oracle/21/client64/lib/libclntsh.so.21.1
+    dest: /usr/lib/oracle/21/client64/lib/libclntsh.so.20.1
+  - src: /usr/lib/oracle/21/client64/lib/libclntshcore.so.21.1
+    dest: /usr/lib/oracle/21/client64/lib/libclntshcore.so
+  - src: /usr/lib/oracle/21/client64/lib/libocci.so.21.1
+    dest: /usr/lib/oracle/21/client64/lib/libocci.so
+  - src: /usr/lib/oracle/21/client64/lib/libocci.so.21.1
+    dest: /usr/lib/oracle/21/client64/lib/libocci.so.10.1
+  - src: /usr/lib/oracle/21/client64/lib/libocci.so.21.1
+    dest: /usr/lib/oracle/21/client64/lib/libocci.so.11.1
+  - src: /usr/lib/oracle/21/client64/lib/libocci.so.21.1
+    dest: /usr/lib/oracle/21/client64/lib/libocci.so.12.1
+  - src: /usr/lib/oracle/21/client64/lib/libocci.so.21.1
+    dest: /usr/lib/oracle/21/client64/lib/libocci.so.18.1
+  - src: /usr/lib/oracle/21/client64/lib/libocci.so.21.1
+    dest: /usr/lib/oracle/21/client64/lib/libocci.so.19.1
+  - src: /usr/lib/oracle/21/client64/lib/libocci.so.21.1
+    dest: /usr/lib/oracle/21/client64/lib/libocci.so.20.1
+  - src: /usr/lib/oracle/21/client64/lib/libocci_gcc53.so.21.1
+    dest: /usr/lib/oracle/21/client64/lib/libocci_gcc53.so

@@ -39,9 +39,10 @@
 
     - name: Create /usr/lib/oracle
       ansible.builtin.file:
-        path: /usr/lib/oracle/21/client64/bin/
+        path: "{{ item }}"
         state: directory
         mode: "0755"
+      loop: "{{ oracle_instant_client_zip_directories }}"
 
     - name: Install devel archive
       ansible.builtin.unarchive:
@@ -59,22 +60,41 @@
       when:
         - oracle_instant_client_type in ["basic", "all"]
 
-    - name: Copy files to the correct location
+    - name: Copy binaries
       ansible.builtin.copy:
         src: /usr/lib/oracle/instantclient_21_13/{{ item }}
         dest: /usr/lib/oracle/21/client64/bin/
         mode: '0755'
         remote_src: yes
-      loop:
-        - adrci
-        - genezi
+      loop: "{{ oracle_instant_client_zip_binaries }}"
+      when:
+        - oracle_instant_client_type in ["basic", "all"]
+    
+    - name: Copy libraries
+      ansible.builtin.copy:
+        src: /usr/lib/oracle/instantclient_21_13/{{ item }}
+        dest: /usr/lib/oracle/21/client64/lib/{{ item }}
+        mode: '0755'
+        remote_src: yes
+      loop: "{{ oracle_instant_client_zip_libraries }}"
+      when:
+        - oracle_instant_client_type in ["basic", "all"]
+
+    - name: Link libraries
+      ansible.builtin.file:
+        src: "{{ item.src}}"
+        dest: "{{ item.dest }}"
+        state: link
+      loop: "{{ oracle_instant_client_zip_links }}"
+      loop_control:
+        label: "{{ item.dest }}"
       when:
         - oracle_instant_client_type in ["basic", "all"]
 
     - name: Create /etc/ld.so.conf.d/oracle-instantclient.conf
       ansible.builtin.copy:
         dest: /etc/ld.so.conf.d/oracle-instantclient.conf
-        content: /usr/lib/oracle/instantclient_21_13
+        content: /usr/lib/oracle/21/client64/lib
         mode: "0644"
       when:
         - oracle_instant_client_type in ["basic", "all"]
