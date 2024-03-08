@@ -1,6 +1,6 @@
 # [Ansible role oracle_instant_client](#oracle_instant_client)
 
-Install and configure oracle_instant_client on your system.
+Install oracle_instant_client on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
