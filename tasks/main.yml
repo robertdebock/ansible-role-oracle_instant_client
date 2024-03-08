@@ -101,15 +101,15 @@
       notify:
         - Run ldconfig
 
-    - name: Find files in /usr/lib/oracle/instantclient_{{ oracle_instant_client_major_version }}_{{ oracle_instant_client_minor_version }}/sdk/include
+    - name: Find files in sdk/include
       ansible.builtin.find:
         paths: /usr/lib/oracle/instantclient_{{ oracle_instant_client_major_version }}_{{ oracle_instant_client_minor_version }}/sdk/include
         patterns: "*.h"
       register: oracle_instant_client_sdk_files
       when:
         - oracle_instant_client_type in [ "devel", "all" ]
-        
-    - name: Copy found files to /usr/include/oracle/{{ oracle_instant_client_major_version }}/client64
+
+    - name: Copy found files to /usr/include/oracle/xxx/client64
       ansible.builtin.copy:
         src: "{{ item.path }}"
         dest: /usr/include/oracle/{{ oracle_instant_client_major_version }}/client64/{{ item.path | basename }}

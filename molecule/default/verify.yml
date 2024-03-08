@@ -59,39 +59,3 @@
             creates: /tmp/vault-plugin-database-oracle/vault-plugin-database-oracle
           environment:
             PKG_CONFIG_PATH: /tmp
-
-# RPM:
-# [root@oracleinstantclient-enterpriselinux-8 lib]# pwd
-# /usr/lib/oracle/21/client64/lib
-# [root@oracleinstantclient-enterpriselinux-8 lib]# ls -l
-# total 243768
-# lrwxrwxrwx 1 root root        17 Jan  4 16:42 libclntsh.so -> libclntsh.so.21.1
-# lrwxrwxrwx 1 root root        17 Jan  4 16:42 libclntsh.so.10.1 -> libclntsh.so.21.1
-# lrwxrwxrwx 1 root root        17 Jan  4 16:42 libclntsh.so.11.1 -> libclntsh.so.21.1
-# lrwxrwxrwx 1 root root        17 Jan  4 16:42 libclntsh.so.12.1 -> libclntsh.so.21.1
-# lrwxrwxrwx 1 root root        17 Jan  4 16:42 libclntsh.so.18.1 -> libclntsh.so.21.1
-# lrwxrwxrwx 1 root root        17 Jan  4 16:42 libclntsh.so.19.1 -> libclntsh.so.21.1
-# lrwxrwxrwx 1 root root        17 Jan  4 16:42 libclntsh.so.20.1 -> libclntsh.so.21.1
-# -rwxr-xr-x 1 root root  84008848 Jan  4 16:42 libclntsh.so.21.1
-# lrwxrwxrwx 1 root root        21 Jan  4 16:42 libclntshcore.so -> libclntshcore.so.21.1
-# -rwxr-xr-x 1 root root   8055264 Jan  4 16:42 libclntshcore.so.21.1
-# -rwxr-xr-x 1 root root   5706440 Jan  4 16:42 libnnz21.so
-# lrwxrwxrwx 1 root root        15 Jan  4 16:42 libocci.so -> libocci.so.21.1
-# lrwxrwxrwx 1 root root        15 Jan  4 16:42 libocci.so.10.1 -> libocci.so.21.1
-# lrwxrwxrwx 1 root root        15 Jan  4 16:42 libocci.so.11.1 -> libocci.so.21.1
-# lrwxrwxrwx 1 root root        15 Jan  4 16:42 libocci.so.12.1 -> libocci.so.21.1
-# lrwxrwxrwx 1 root root        15 Jan  4 16:42 libocci.so.18.1 -> libocci.so.21.1
-# lrwxrwxrwx 1 root root        15 Jan  4 16:42 libocci.so.19.1 -> libocci.so.21.1
-# lrwxrwxrwx 1 root root        15 Jan  4 16:42 libocci.so.20.1 -> libocci.so.21.1
-# -rwxr-xr-x 1 root root   2372112 Jan  4 16:42 libocci.so.21.1
-# lrwxrwxrwx 1 root root        21 Jan  4 16:42 libocci_gcc53.so -> libocci_gcc53.so.21.1
-# -rwxr-xr-x 1 root root    955016 Jan  4 16:42 libocci_gcc53.so.21.1
-# -rwxr-xr-x 1 root root 142717368 Jan  4 16:42 libociei.so
-# -rwxr-xr-x 1 root root    153328 Jan  4 16:42 libocijdbc21.so
-# -rwxr-xr-x 1 root root    115832 Jan  4 16:42 liboramysql.so
-# drwxr-xr-x 3 root root      4096 Mar  7 15:43 network
-# -rw-r--r-- 1 root root   5153068 Jan  4 16:42 ojdbc8.jar
-# -rw-r--r-- 1 root root    313031 Jan  4 16:43 ottclasses.zip
-# -rw-r--r-- 1 root root     31869 Jan  4 16:42 xstreams.jar
-
-# ZIP:
