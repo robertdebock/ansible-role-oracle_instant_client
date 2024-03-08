@@ -6,7 +6,7 @@ oracle_instant_client_major_version: "{{ oracle_instant_client_version.split('.'
 oracle_instant_client_minor_version: "{{ oracle_instant_client_version.split('.')[1] }}"
 oracle_instance_client_smashed_version: "{{ oracle_instant_client_version | regex_replace('\\.', '') }}"
 
-# Some distributions allow a package installation, other require a zip file to be extracted.
+# Some distributions allow a package installation, other require a zip archive to be extracted.
 _oralel_instant_client_selected_type:
   "default": "zip"
   "RedHat": "package"
@@ -132,4 +132,3 @@ _oracle_instant_client_zip_links:
     - src: libocci_gcc53.so.{{ oracle_instant_client_major_version }}.1
       dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libocci_gcc53.so
 oracle_instant_client_zip_links: "{{ _oracle_instant_client_zip_links[oracle_instant_client_major_version] }}"
-
