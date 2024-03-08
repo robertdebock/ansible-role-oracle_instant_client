@@ -8,4 +8,5 @@ oracle_instant_client_type: "all"
 oracle_instant_client_version: "21.13.0.0.0"
 
 # Set the installation package type, either: "package" or "zip".
-oracle_instant_client_installation_type: "package"
+# The `oracle_instant_client_selected_type` is detected in `vars/main.yml`, but can be overridden here.
+oracle_instant_client_installation_type: "{{ oracle_instant_client_selected_type }}"
