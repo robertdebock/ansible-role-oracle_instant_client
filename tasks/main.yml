@@ -20,12 +20,14 @@
     - name: Install basic package
       ansible.builtin.package:
         name: "{{ oracle_instant_client_package }}"
+        disable_gpg_check: yes
       when:
         - oracle_instant_client_type in [ "basic", "all" ]
 
     - name: Install devel package
       ansible.builtin.package:
         name: "{{ oracle_instant_client_devel_package }}"
+        disable_gpg_check: yes
       when:
         - oracle_instant_client_type in [ "devel", "all" ]
 

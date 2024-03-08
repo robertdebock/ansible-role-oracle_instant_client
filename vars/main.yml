@@ -15,14 +15,14 @@ oracle_instant_client_selected_type: "{{ _oralel_instant_client_selected_type[an
 # The package name differs a bit per distribution. Be aware that not all versions offer an RPM.
 _oracle_instant_client_package:
   "7": "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/oracle-instantclient-basic-{{ oracle_instant_client_version }}-1.x86_64.rpm"
-  "8": "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/oracle-instantclient-basic-{{ oracle_instant_client_version }}-1.el8.x86_64.rpm"
-  "9": "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/el9/oracle-instantclient-basic-{{ oracle_instant_client_version }}-1.el9.x86_64.rpm"
+  "8": "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/oracle-instantclient{{ oracle_instant_client_major_version }}.{{ oracle_instant_client_minor_version }}-basic-{{ oracle_instant_client_version }}-1.x86_64.rpm"
+  "9": "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/oracle-instantclient{{ oracle_instant_client_major_version }}.{{ oracle_instant_client_minor_version }}-basic-{{ oracle_instant_client_version }}-1.x86_64.rpm"
 oracle_instant_client_package: "{{ _oracle_instant_client_package[ansible_distribution_major_version] }}"
 
 _oracle_instant_client_devel_package:
   "7": "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/oracle-instantclient-devel-{{ oracle_instant_client_version }}-1.x86_64.rpm"
-  "8": "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/oracle-instantclient-devel-{{ oracle_instant_client_version }}-1.el8.x86_64.rpm"
-  "9": "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/el9/oracle-instantclient-devel-{{ oracle_instant_client_version }}-1.el9.x86_64.rpm"
+  "8": "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/oracle-instantclient{{ oracle_instant_client_major_version }}.{{ oracle_instant_client_minor_version }}-devel-{{ oracle_instant_client_version }}-1.x86_64.rpm"
+  "9": "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/oracle-instantclient{{ oracle_instant_client_major_version }}.{{ oracle_instant_client_minor_version }}-devel-{{ oracle_instant_client_version }}-1.x86_64.rpm"
 oracle_instant_client_devel_package: "{{ _oracle_instant_client_devel_package[ansible_distribution_major_version] }}"
 
 # The archive location is the same for all distributions.
