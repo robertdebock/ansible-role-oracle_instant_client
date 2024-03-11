@@ -7,10 +7,10 @@ oracle_instant_client_minor_version: "{{ oracle_instant_client_version.split('.'
 oracle_instance_client_smashed_version: "{{ oracle_instant_client_version | regex_replace('\\.', '') }}"
 
 # Some distributions allow a package installation, other require a zip archive to be extracted.
-_oralel_instant_client_selected_type:
+_oracle_instant_client_selected_type:
   "default": "zip"
   "RedHat": "package"
-oracle_instant_client_selected_type: "{{ _oralel_instant_client_selected_type[ansible_os_family] | default(_oralel_instant_client_selected_type['default']) }}"
+oracle_instant_client_selected_type: "{{ _oracle_instant_client_selected_type[ansible_os_family] | default(_oracle_instant_client_selected_type['default']) }}"
 
 # The package name differs a bit per distribution. Be aware that not all versions offer an RPM.
 _oracle_instant_client_package:
