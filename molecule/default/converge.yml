@@ -6,3 +6,4 @@
 
   roles:
     - role: ansible-role-oracle_instant_client
+      oracle_instant_client_version: "19.17.0.0.0"
