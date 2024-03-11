@@ -13,7 +13,7 @@
 
     - name: Run adrci
       ansible.builtin.shell:
-        cmd: "set -o pipefail && echo 'HELP' | {{ oracle_instant_client_installation_path.files[0].path }}/client64/bin/adrci -v"
+        cmd: "set -o pipefail && echo 'HELP' | {{ oracle_instant_client_installation_path.files[-1].path }}/client64/bin/adrci -v"
         executable: /bin/bash
       changed_when: no
       environment:
@@ -21,5 +21,5 @@
 
     - name: Run genezi
       ansible.builtin.command:
-        cmd: "{{ oracle_instant_client_installation_path.files[0].path }}/client64/bin/genezi -v"
+        cmd: "{{ oracle_instant_client_installation_path.files[-1].path }}/client64/bin/genezi -v"
       changed_when: no
