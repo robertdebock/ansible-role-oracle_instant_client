@@ -53,7 +53,7 @@
         remote_src: yes
       when:
         - oracle_instant_client_type in [ "devel", "all" ]
-
+        
     - name: Install basic archive
       ansible.builtin.unarchive:
         src: "{{ oracle_instant_client_archive }}"
