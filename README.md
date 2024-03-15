@@ -19,6 +19,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.oracle_instant_client
+      oracle_instant_client_version: "19.17.0.0.0"
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-oracle_instant_client/blob/master/molecule/default/prepare.yml):
