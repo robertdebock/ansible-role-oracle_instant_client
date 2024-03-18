@@ -1,8 +1,8 @@
 ---
 - name: Verify
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   tasks:
     - name: Find installation path
@@ -15,11 +15,11 @@
       ansible.builtin.shell:
         cmd: "set -o pipefail && echo 'HELP' | {{ oracle_instant_client_installation_path.files[-1].path }}/client64/bin/adrci -v"
         executable: /bin/bash
-      changed_when: no
+      changed_when: false
       environment:
         ORACLE_HOME: /tmp
 
     - name: Run genezi
       ansible.builtin.command:
         cmd: "{{ oracle_instant_client_installation_path.files[-1].path }}/client64/bin/genezi -v"
-      changed_when: no
+      changed_when: false
