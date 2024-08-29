@@ -2,24 +2,31 @@
 - name: Verify
   hosts: all
   become: true
-  gather_facts: true
+  gather_facts: false
 
   tasks:
-    - name: Find installation path
+    - name: Find adrci binary
       ansible.builtin.find:
-        paths: /usr/lib/oracle
-        file_type: directory
-      register: oracle_instant_client_installation_path
+        path: /usr/lib/oracle
+        pattern: adrci
+        recurse: true
+      register: adrci_binary
 
-    - name: Run adrci
+    - name: Run adrci binary
       ansible.builtin.shell:
-        cmd: "set -o pipefail && echo 'HELP' | {{ oracle_instant_client_installation_path.files[-1].path }}/client64/bin/adrci -v"
+        cmd: "ORACLE_HOME=/tmp {{ adrci_binary.files[0].path }} -v"
         executable: /bin/bash
       changed_when: false
-      environment:
-        ORACLE_HOME: /tmp
 
-    - name: Run genezi
-      ansible.builtin.command:
-        cmd: "{{ oracle_instant_client_installation_path.files[-1].path }}/client64/bin/genezi -v"
+    - name: Find genezi binary
+      ansible.builtin.find:
+        path: /usr/lib/oracle
+        pattern: genezi
+        recurse: true
+      register: genezi_binary
+
+    - name: Run genezi binary
+      ansible.builtin.shell:
+        cmd: "ORACLE_HOME=/tmp {{ genezi_binary.files[0].path }} -v"
+        executable: /bin/bash
       changed_when: false
