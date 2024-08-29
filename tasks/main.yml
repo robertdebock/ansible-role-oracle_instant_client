@@ -31,7 +31,7 @@
       when:
         - oracle_instant_client_type in [ "devel", "all" ]
 
-- name: Instal zip
+- name: Install zip
   when:
     - oracle_instant_client_installation_type in [ "zip" ]
   block:
