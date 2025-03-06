@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: true
 
   roles:
-    - role: robertdebock.oracle_instant_client
+    - role: ansible-role-oracle_instant_client
       oracle_instant_client_version: "19.17.0.0.0"
 ```
 
