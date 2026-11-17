@@ -43,6 +43,9 @@ _oracle_instant_client_required_packages:
   RedHat:
     - libaio
   Ubuntu-24: libaio1t64
+  Debian-13:
+    - libaio1t64
+    - libaio-dev
 oracle_instant_client_required_packages: "{{ _oracle_instant_client_required_packages[ansible_facts['distribution'] ~ '-' ~ ansible_facts['distribution_major_version']] | default(_oracle_instant_client_required_packages[ansible_facts['os_family']]) }}"
 
 # A list of directories to create when using the "zip" installation type.
