@@ -93,6 +93,16 @@
       when:
         - oracle_instant_client_type in [ "basic", "all" ]
 
+    # Debian 13 and Ubuntu 24 ship libaio as `libaio.so.1t64`, Oracle's binaries need `libaio.so.1`.
+    - name: Link libaio.so.1 to libaio.so.1t64
+      ansible.builtin.file:
+        src: /usr/lib/x86_64-linux-gnu/libaio.so.1t64
+        dest: /usr/lib/x86_64-linux-gnu/libaio.so.1
+        state: link
+      when:
+        - ansible_facts['distribution'] == "Debian"
+        - ansible_facts['distribution_major_version'] == "13"
+
     - name: Create /etc/ld.so.conf.d/oracle-instantclient.conf
       ansible.builtin.copy:
         dest: /etc/ld.so.conf.d/oracle-instantclient.conf
